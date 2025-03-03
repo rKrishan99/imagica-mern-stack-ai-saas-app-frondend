@@ -30,7 +30,7 @@ const ScrollToTopButton = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-20 right-5 bg-violet-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 ${
+      className={`fixed bottom-20 right-5 bg-gradient-to-bl from-red-800 to-violet-800 text-white p-3 rounded-full shadow-lg transition-opacity duration-300 ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
     >
