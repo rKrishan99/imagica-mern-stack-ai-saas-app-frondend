@@ -112,15 +112,11 @@ const SignUp = () => {
                 />
               </div>
 
-              <span className="text-gray-400 mt-3">or</span>
-
-              <GoogleSignIn/>
-
               <button className="mt-8 w-full bg-gradient-to-r from-[#bc619b] via-red-500 to-blue-600 text-white cursor-pointer hover:scale-105 transition-all duration-300 px-7 py-2 rounded-full">
                 Create Account
               </button>
               <div>
-                <p className="text-sm mt-5">
+                <p className="text-sm mt-2">
                   Don't have an account?{" "}
                   <span
                     onClick={() => handleClickLogin()}
@@ -130,6 +126,12 @@ const SignUp = () => {
                   </span>
                 </p>
               </div>
+              <div className="flex flex-row w-full gap-2 justify-center items-center mt-3">
+                <div className="w-full h-[0.5px] bg-gray-400"></div>
+                <span className="text-gray-400">or</span>
+                <div className="w-full h-[1px] bg-gray-400"></div>
+              </div>
+              <GoogleSignIn />
             </form>
           </div>
         </motion.div>

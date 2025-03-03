@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
@@ -9,13 +9,23 @@ const Navbar = () => {
   const { user, setUser, setToken, setIsOpenLogin, credit } =
     useContext(AppContext);
 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const handleClickedLogout = () => {
     console.log("Logout");
     localStorage.removeItem("token");
     setToken("");
     setUser(null);
     navigate("/");
+    window.location.reload();
   };
+
+  // Toggle dropdown visibility
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prevState) => !prevState);
+  };
+
+  console.log("user.profileImage", user.profileImage);
 
   return (
     <div className="flex items-center justify-between py-4">
@@ -39,22 +49,37 @@ const Navbar = () => {
             </div>
             <p className="text-white max-sm:hidden pl-4">Hi, {user.name}</p>
             <div className="relative group">
+              {/* {!user.profileImage ? ( */}
               <img
                 className="w-10 drop-shadow rounded-full cursor-pointer"
-                src={user.profileImage ? user.profileImage : assets.profileIcon}
-                alt=""
+                src={assets.profileIcon}
+                alt="Profile"
+                onClick={toggleDropdown}
               />
-              <div
-                onClick={() => handleClickedLogout()}
-                className="absolute hidden group-hover:block cursor-pointer top-0 right-0 z-10 text-[#bc6184] text-center runded pt-12"
-              >
-                <ul className="flex justify-center list-none m-0 p-2 bg-black rounded-md border text-sm">
-                  <li className="py-1 ml-[10px] px-2 text-white cursor-pointer text-center pr-10">
-                    Logout
-                  </li>
-                  <img className="w-5 mr-[10px]" src={assets.logout} alt="" />
-                </ul>
-              </div>
+              {/* ) : (
+                <img
+                  className="w-10 drop-shadow rounded-full"
+                  src={user.profileImage}
+                  alt="Profile"
+                />
+              )} */}
+
+              {isDropdownOpen && (
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent the click from propagating to the parent
+                    handleClickedLogout();
+                  }}
+                  className="absolute hidden group-hover:block cursor-pointer top-0 right-0 z-10 text-[#bc6184] text-center runded pt-12"
+                >
+                  <ul className="flex justify-center list-none m-0 p-2 bg-black rounded-md border text-sm">
+                    <li className="py-1 ml-[10px] px-2 text-white cursor-pointer text-center pr-10">
+                      Logout
+                    </li>
+                    <img className="w-5 mr-[10px]" src={assets.logout} alt="" />
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         ) : (

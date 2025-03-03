@@ -4,6 +4,7 @@ import { assets } from "../assets/assets";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const GoogleSignIn = () => {
   const {
@@ -15,6 +16,8 @@ const GoogleSignIn = () => {
     setIsOpenSignup,
     setPreviousGeneratedImages,
   } = useContext(AppContext);
+
+  const navigate = useNavigate();
 
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
@@ -31,6 +34,8 @@ const GoogleSignIn = () => {
         const userData = userResponse.data;
         const profileImage = userData.picture;
 
+        console.log('userData from goofle:', userData);
+
         // Attempt login first
         try {
           const loginResponse = await axios.post(
@@ -42,6 +47,7 @@ const GoogleSignIn = () => {
           );
 
           const loginData = loginResponse.data;
+          console.log("loginData", loginData);
 
           if (loginData.success) {
             setToken(loginData.token);
@@ -51,6 +57,7 @@ const GoogleSignIn = () => {
             toast.success("Login Success");
             setIsOpenLogin(false);
             setIsOpenSignup(false);
+            navigate('/');
             return;
           }
         } catch (error) {
@@ -78,6 +85,7 @@ const GoogleSignIn = () => {
           setIsOpenLogin(false);
           toast.success("Signup Success");
           setIsOpenSignup(false);
+          navigate('/');
         } else {
           toast.error(registerData.message);
         }
