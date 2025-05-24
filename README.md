@@ -41,6 +41,11 @@ Imagica is a powerful MERN stack application that transforms text descriptions i
 - Image processing capabilities
 - [Backend Repository](https://github.com/rKrishan99/imagica-mern-stack-ai-saas-app-backend.git)
 
+![Screenshot 2025-05-24 205546](https://github.com/user-attachments/assets/dfb1fbc7-2f68-4567-9732-05793603615e)
+
+![Screenshot 2025-05-24 205504](https://github.com/user-attachments/assets/2f83a609-aef4-4aac-8eb3-cb604e28ee9c)
+
+
 ## Getting Started
 
 ### Prerequisites
@@ -96,7 +101,7 @@ npm start
 3. Navigate to the image generation page
 4. Enter your text description
 5. Click generate and watch AI create your image
-6. Download or share your generated images
+6. Download your generated images
 
 ## Contributing
 1. Fork the repository
