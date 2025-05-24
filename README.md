@@ -41,6 +41,8 @@ Imagica is a powerful MERN stack application that transforms text descriptions i
 - Image processing capabilities
 - [Backend Repository](https://github.com/rKrishan99/imagica-mern-stack-ai-saas-app-backend.git)
 
+  
+
 ![Screenshot 2025-05-24 205546](https://github.com/user-attachments/assets/dfb1fbc7-2f68-4567-9732-05793603615e)
 
 ![Screenshot 2025-05-24 205504](https://github.com/user-attachments/assets/2f83a609-aef4-4aac-8eb3-cb604e28ee9c)
