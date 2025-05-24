@@ -31,7 +31,7 @@ const Login = () => {
 
       if (data.success) {
         localStorage.setItem("token", data.token);
-        console.log("This is Token:" ,data.token);
+        console.log("This is Token:", data.token);
         setToken(data.token);
         setUser(data.user);
         setPreviousGeneratedImages(data.user.generatedImages);
@@ -43,10 +43,21 @@ const Login = () => {
         setEmail("");
         setPassword("");
       } else {
-        toast.error(data.message);
+        toast.error(data.message || "Login failed");
       }
     } catch (error) {
       console.log(error);
+      if (error.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else if (error.response?.status === 401) {
+        toast.error("Invalid email or password");
+      } else if (error.response?.status === 404) {
+        toast.error("User not found");
+      } else if (error.code === "ERR_NETWORK") {
+        toast.error("Network error. Please check your connection.");
+      } else {
+        toast.error("Login failed. Please try again.");
+      }
     }
   };
 
@@ -109,17 +120,20 @@ const Login = () => {
                 />
               </div>
               <div className="flex justify-start w-full mt-3">
-                <span  onClick={() => hadleClickForgotPassword()} className="text-sm text-gray-300 cursor-pointer hover:text-[#bc619b] transition-colors duration-300">
+                <span
+                  onClick={() => hadleClickForgotPassword()}
+                  className="text-sm text-gray-300 cursor-pointer hover:text-[#bc619b] transition-colors duration-300"
+                >
                   Forgot Password?
                 </span>
               </div>
-               
+
               <button className="mt-8 w-full bg-gradient-to-r from-[#bc619b] via-red-500 to-blue-600 text-white cursor-pointer hover:scale-105 transition-all duration-300 px-7 py-2 rounded-full">
                 Login
               </button>
               <div>
                 <p className="text-sm mt-2">
-                  Don't have an account?{" "}
+                  Don't have an account?
                   <span
                     onClick={() => hadleClickSignup()}
                     className="text-[#bc619b] cursor-pointer"
@@ -133,7 +147,7 @@ const Login = () => {
                 <span className="text-gray-400">or</span>
                 <div className="w-full h-[1px] bg-gray-400"></div>
               </div>
-              <GoogleSignIn/>
+              <GoogleSignIn />
             </form>
           </div>
         </motion.div>

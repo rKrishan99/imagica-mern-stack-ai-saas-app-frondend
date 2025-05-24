@@ -67,7 +67,7 @@ const AppContextProvider = ({ children }) => {
       console.log("Generated Image Data:", data);
 
       if (data.success) {
-        loadCreditData();
+        setCredit(data.credits || credit - 1);
         return data.resultImage;
       } else {
         toast.error(data.message);

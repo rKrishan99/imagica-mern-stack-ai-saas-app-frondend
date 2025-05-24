@@ -15,16 +15,13 @@ import ScrollToTopButton from "./components/ScrollToTopButton";
 
 const App = () => {
   return (
-    // <div className="px-4  sm:px-10 md:-14 lg:px-28 min-h-screen bg-gradient-to-b from-gray-950 to-purple-950">
     <div className="px-4  sm:px-10 md:-14 lg:px-28 min-h-screen gradient-bg text-white">
-      {/* from-teal-50 to-orange-50  */}
       <ToastContainer position="bottom-right" />
       <Navbar />
       <ScrollToTopButton />
       <Login />
       <SignUp />
       <PasswordResetRequestForm />
-      <AddNewPasswword />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/result" element={<Result />} />
@@ -32,7 +29,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/forgot-password" element={<PasswordResetRequestForm />} />
-        <Route path="/add-new-password" element={<AddNewPasswword />} />
+        <Route path="/reset-password/:token" element={<AddNewPasswword />} />
       </Routes>
       <Footer />
     </div>
