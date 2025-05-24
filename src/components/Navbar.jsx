@@ -49,20 +49,21 @@ const Navbar = () => {
             </div>
             <p className="text-white max-sm:hidden pl-4">Hi, {user.name}</p>
             <div className="relative group">
-              {/* {!user.profileImage ? ( */}
-              <img
-                className="w-10 drop-shadow rounded-full cursor-pointer"
-                src={assets.profileIcon}
-                alt="Profile"
-                onClick={toggleDropdown}
-              />
-              {/* ) : (
+              {(user.profileImage === '' || user.profileImage ==="no image" )? (
+                <img
+                  className="w-10 drop-shadow rounded-full cursor-pointer"
+                  src={assets.profileIcon}
+                  alt="Profile"
+                  onClick={toggleDropdown}
+                />
+              ) : (
                 <img
                   className="w-10 drop-shadow rounded-full"
                   src={user.profileImage}
                   alt="Profile"
+                  onClick={toggleDropdown}
                 />
-              )} */}
+              )}
 
               {isDropdownOpen && (
                 <div

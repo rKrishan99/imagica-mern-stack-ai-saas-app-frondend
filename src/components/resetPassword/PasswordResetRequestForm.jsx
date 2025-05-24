@@ -9,30 +9,45 @@ const PasswordResetRequestForm = () => {
   const {
     isOpenForgotPassword,
     setIsOpenForgotPassword,
-    setIsOpenAddNewPassword,
     backendUrl,
   } = useContext(AppContext);
-  
+
   const [email, setEmail] = useState("");
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
+    if (!email || !email.includes("@")) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+
     console.log("Email:", email);
 
     try {
-        const response = await axios.post(`${backendUrl}/api/auth/forgot-password`, { email });
-        console.log("response:",response.data);
-        toast.success(response.data.message);
-        } catch (error) {
-        console.error(error);
-        toast.error(error.response.data.message);
-    }
-  };
+      const response = await axios.post(
+        `${backendUrl}/api/auth/forgot-password`,
+        { email }
+      );
+      console.log("response:", response.data);
+      toast.success(response.data.message);
 
-  const handleSendLink = () => {
-    setIsOpenForgotPassword(false);
-    setIsOpenAddNewPassword(true);
+      setEmail("");
+      setIsOpenForgotPassword(false);
+    } catch (error) {
+      console.error("Full error:", error);
+      console.error("Error response:", error.response);
+
+      if (error.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else if (error.response?.status === 500) {
+        toast.error("Server error. Please try again later.");
+      } else if (error.code === "ERR_NETWORK") {
+        toast.error("Network error. Please check your connection.");
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    }
   };
 
   return (
@@ -70,10 +85,7 @@ const PasswordResetRequestForm = () => {
                 />
               </div>
 
-              <button
-                onClick={() => handleSendLink()}
-                className="mt-8 w-full bg-gradient-to-r from-[#bc619b] via-red-500 to-blue-600 text-white cursor-pointer hover:scale-105 transition-all duration-300 px-7 py-2 rounded-full"
-              >
+              <button className="mt-8 w-full bg-gradient-to-r from-[#bc619b] via-red-500 to-blue-600 text-white cursor-pointer hover:scale-105 transition-all duration-300 px-7 py-2 rounded-full">
                 Send Reset Link
               </button>
             </form>
