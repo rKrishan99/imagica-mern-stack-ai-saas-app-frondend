@@ -25,7 +25,7 @@ const ImageGenerate = () => {
           <>
             <div className="overlay"></div>
             <img
-              onClick={() => handleClearImage()}
+              onClick={handleClearImage}
               className="absolute cross-icon m-2 w-[20px] right-0 top-0 cursor-pointer hover:scale-110 transition-all duration-300"
               src={assets.cross_icon}
               alt=""
@@ -52,7 +52,7 @@ const ImageGenerate = () => {
             src={image}
           />
         ) : (
-          <div class="loader"></div>
+          <div className="loader"></div>
         )}
       </div>
     </motion.div>
