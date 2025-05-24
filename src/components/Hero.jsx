@@ -3,7 +3,6 @@ import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { AppContext } from "../context/AppContext";
-import { CSpinner } from '@coreui/react'
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -59,8 +58,8 @@ const Hero = () => {
         Unleash the power of AI and bring your imagination to life. Just type
         your idea, and let AI create breathtaking visuals in seconds.
       </motion.p>
-      <div class="relative group cursor-pointer mt-20 mb-12 rounded-full">
-        <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-violet-600 rounded-full blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+      <div className="relative group cursor-pointer mt-20 mb-12 rounded-full">
+        <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-violet-600 rounded-full blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
         <motion.div
           class="relative bg-white ring-1 ring-gray-900/5 rounded-full "
           whileHover={{ scale: 1.05 }}
@@ -74,7 +73,7 @@ const Hero = () => {
         >
           <button
             onClick={() => handleNavigation()}
-            class="flex justify-center px-8 bg-gradient-to-bl from-red-800 to-violet-800 group-hover:from-gray-950 group-hover:to-violet-800 rounded-full py-[10px] items-center gap-3 sm:text-lg w-auto font-light text-black cursor-pointer"
+            className="flex justify-center px-8 bg-gradient-to-bl from-red-800 to-violet-800 group-hover:from-gray-950 group-hover:to-violet-800 rounded-full py-[10px] items-center gap-3 sm:text-lg w-auto font-light text-black cursor-pointer"
           >
             <p className="text-gray-200">Generates Images</p>
             <img className="h-6" src={assets.star_group} alt="" />
